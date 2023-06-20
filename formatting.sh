@@ -1,0 +1,1 @@
+cd functions/ && npm run lint -- --fix && cd .. && firebase deploy
