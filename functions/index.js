@@ -15,9 +15,9 @@ const {token} = require("./config.json");
 const objectSupport = require("dayjs/plugin/objectSupport");
 dayjs.extend(objectSupport);
 
-// const startDate = dayjs("2023-06-20T13:00:00+07:00");
-const endDate = dayjs("2023-06-20T13:00:00+07:00");
-const isFirstDay = true;
+const JP_CHANNEL = "1119110367897985116";
+const endDate = dayjs("2023-06-28T19:00:00+07:00");
+const isFirstDay = false;
 const diff = endDate.diff(dayjs(), "day");
 const title = `${bold("STEP by STEP!")}`;
 const imageUrl = "https://pbs.twimg.com/media/Fy9xvwiaYAAFzYp?format=jpg&name=900x900";
@@ -44,7 +44,7 @@ const eventsReminderJP = onRequest({region: "asia-southeast2", maxInstances: 1},
         .setImage(imageUrl)
         .setTitle(title)
         .setDescription(description());
-    client.channels.cache.get("912576389130125396").send({embeds: [embedBuilder]}).then(() => {
+    client.channels.cache.get(JP_CHANNEL).send({embeds: [embedBuilder]}).then(() => {
       response.status(200).send("200");
     });
   });
@@ -53,4 +53,8 @@ const eventsReminderJP = onRequest({region: "asia-southeast2", maxInstances: 1},
   client.login(token);
 });
 
-module.exports = {eventsReminderJP};
+const eventsReminderEN = onRequest({region: "asia-southeast2", maxInstances: 1}, (_, response) => {
+  response.status(200).end();
+});
+
+module.exports = {eventsReminderJP, eventsReminderEN};
