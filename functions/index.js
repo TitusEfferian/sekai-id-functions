@@ -9,6 +9,7 @@
 
 const {onRequest} = require("firebase-functions/v2/https");
 const eventsReminderEN = require("./reminder-en");
+const functionReminderJpEnd = require("./functionReminderJpEnd");
 // const logger = require("firebase-functions/logger");
 const {Client, Events, GatewayIntentBits, EmbedBuilder, bold} = require("discord.js");
 const dayjs = require("dayjs");
@@ -55,4 +56,4 @@ const eventsReminderJP = onRequest({region: "asia-southeast2", maxInstances: 1},
 });
 
 
-module.exports = {eventsReminderJP, eventsReminderEN};
+module.exports = {eventsReminderJP, eventsReminderEN, functionReminderJpEnd};
