@@ -1,5 +1,5 @@
 const {onRequest} = require("firebase-functions/v2/https");
-const {Client, Events, GatewayIntentBits, EmbedBuilder, bold} = require("discord.js");
+const {Client, Events, GatewayIntentBits, EmbedBuilder, bold, roleMention} = require("discord.js");
 const title = `${bold("STEP by STEP!")}`;
 const imageUrl = "https://pbs.twimg.com/media/Fy9xvwiaYAAFzYp?format=jpg&name=900x900";
 const {token} = require("./config.json");
@@ -11,9 +11,9 @@ const functionReminderJpEnd = onRequest({region: "asia-southeast2", maxInstances
     const embedBuilder = new EmbedBuilder()
         .setImage(imageUrl)
         .setTitle(title)
-        .setDescription("EVENT TELAH BERAKHIR, JANGAN LUPA MASUK KEDALAM LIVE UNTUK MENGAMBIL REWARDS");
+        .setDescription("LIVE REMINDER - EVENT TELAH BERAKHIR, JANGAN LUPA MASUK KEDALAM LIVE UNTUK MENGAMBIL REWARDS");
     await client.channels.cache.get(JP_CHANNEL).send({embeds: [embedBuilder]});
-    await client.channels.cache.get(JP_CHANNEL).send(`<@${JP_PLAYER_ROLE}>`);
+    await client.channels.cache.get(JP_CHANNEL).send(roleMention(JP_PLAYER_ROLE));
     response.status(200).send("200");
   });
   // Log in to Discord with your client's token
